@@ -15,34 +15,30 @@ import com.codepath.apps.restclienttemplate.models.Tweet;
 
 import java.util.List;
 
-// we extend the class and parameterize it by the tweet view holders
+import static java.lang.System.load;
+
 public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder>{
 
     Context context;
     List<Tweet> tweets;
-    // pass in the context and list of tweets
-    public TweetsAdapter(Context context, List<Tweet> tweets){
+
+    public TweetsAdapter(Context context, List<Tweet> tweets) {
         this.context = context;
         this.tweets = tweets;
     }
 
-    // for each row, inflate a layout
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_tweet, parent, false);
-        // wrap this newly created view in a viewholder
         return new ViewHolder(view);
     }
-    // bind values based on the position of the element
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        // get the data at position
+//        get the data at position
         Tweet tweet = tweets.get(position);
-
-        // bind the tweet w viewholder passed in, we create a new bind method
-        // in the viewholder for this
+//        bind the tweet with ViewHolder
         holder.bind(tweet);
     }
 
@@ -51,43 +47,33 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         return tweets.size();
     }
 
-    // clean all elements of the recycler
-    public void clear(){
-        // avoid tweets = new ArrayList<>, need to modify existing reference
+    public void clear() {
         tweets.clear();
-        notifyDataSetChanged();;
-    }
-
-    // add a list of items
-    public void addAll(List<Tweet> tweetList){
-        tweets.addAll(tweetList);
         notifyDataSetChanged();
-
     }
 
+    public void addAll(List<Tweet> list) {
+        tweets.addAll(list);
+        notifyDataSetChanged();
+    }
 
+    public class ViewHolder extends RecyclerView.ViewHolder{
 
-    // define a viewholder , usually where we start
-    // defines one view in the recycler, so one tweet
-    public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView ivProfileImage;
         TextView tvBody;
         TextView tvScreenName;
-        TextView tvTimestamp;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
             tvBody = itemView.findViewById(R.id.tvBody);
             tvScreenName = itemView.findViewById(R.id.tvScreenName);
-            tvTimestamp = itemView.findViewById(R.id.tvTimestamp);
-
         }
 
         public void bind(Tweet tweet) {
             tvBody.setText(tweet.body);
             tvScreenName.setText(tweet.user.screenName);
-            Glide.with(context).load(tweet.user.profileImageUrl).into(ivProfileImage);
-            tvTimestamp.setText(tweet.getFormattedTimestamp());
+            Glide.with(context).load(tweet.user.profileImageURL).into(ivProfileImage);
         }
     }
 }

@@ -14,7 +14,6 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="0dp"
         android:layout_marginTop="0dp"
-        android:contentDescription="profileimg"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
@@ -25,8 +24,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="0dp"
         android:layout_toEndOf="@+id/ivProfileImage"
-        android:text="TextView"
-        tools:text="@Devin" />
+        tools:text="mmakkayy" />
 
     <TextView
         android:id="@+id/tvBody"
@@ -36,16 +34,5 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="2dp"
         android:layout_toEndOf="@+id/ivProfileImage"
-        android:text="TextView"
-        tools:text="Test Tweet" />
-
-    <TextView
-        android:id="@+id/tvTimestamp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="13dp"
-        android:text="TextView"
-        tools:text="8m" />
+        tools:text="This is my tweet" />
 </RelativeLayout>
